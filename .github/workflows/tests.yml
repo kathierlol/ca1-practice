@@ -1,0 +1,41 @@
+name: Run unit tests
+
+# WHEN the workflow runs
+# Advanced feature: only run when relevant files change (paths filter),
+# and only for pushes/PRs on main, so README/doc edits don't waste runs.
+on:
+  push:
+    branches: [main]
+    paths:
+      - "01_shopping_cart/**"
+      - ".github/workflows/tests.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "01_shopping_cart/**"
+      - ".github/workflows/tests.yml"
+
+# Advanced feature: if a new push arrives while an older run for the same
+# branch is still going, cancel the older run (it is already out of date).
+concurrency:
+  group: tests-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Check out the repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install pytest
+        run: python -m pip install pytest
+
+      - name: Run unit tests
+        run: python -m pytest -v
