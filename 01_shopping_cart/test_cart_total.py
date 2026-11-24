@@ -69,3 +69,6 @@ def test_calculate_total_rejects_negative_quantity(bad_quantity):
     with pytest.raises(ValueError):
         calculate_total(100, bad_quantity)# cancel test 1  
 # cancel test 2  
+
+
+practise = 10
