@@ -72,3 +72,6 @@ def test_calculate_total_rejects_negative_quantity(bad_quantity):
 
 
 paractise = 11
+kath
+
+
