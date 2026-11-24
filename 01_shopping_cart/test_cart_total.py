@@ -71,7 +71,7 @@ def test_calculate_total_rejects_negative_quantity(bad_quantity):
 # cancel test 2  
 
 
-paractise = 12
+paractise = 11
 
 
 
